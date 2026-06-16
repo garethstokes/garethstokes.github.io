@@ -58,17 +58,18 @@ ZINC_DEP_BOOT_CONFLICT (exit 3)
         transformers bound admits 0.6.1.0  ([dependencies.monad-control] rev = "...")
 ```
 
-```
-  monad-control
+<pre class="diagram">
+  monad-control, resolved at its newest git tag:
 
-   o---o---o---[ tag v1.0.2 ]---o---o---o---o--->  (HEAD)
-                    |                                  |
-                    transformers <0.6                  transformers 0.6.1.0  ok
-                    (newest release, stale)            (never tagged)
-                    |                                  |
-                    +------------ forward-pin -------->+
-                          rev = "<first commit that admits 0.6.1.0>"
-```
+    o--o--o--[ v1.0.3 ]--o--o-->  HEAD (1.0.4)
+                |                     |
+        transformers &lt;0.6    transformers &lt;0.7
+        (excludes 0.6.1.0)   (admits 0.6.1.0)
+                |                     |
+                +-- forward-pin ---->+
+        point the ref past the stale tag, to a
+        commit whose bound admits 0.6.1.0
+</pre>
 
 Two details deserve more honesty than my first pass gave them.
 
@@ -86,7 +87,7 @@ Most of that particular trouble is on loan from the old ecosystem, and it gets p
 
 One kind of conflict doesn't go away, though, and it's worth being clear that zinc has no plan to make it disappear. If package A wants `vector` at one ref and package C wants it at another, the one-ref-per-name rule forces a single choice. With no solver, you make that choice. That's not a gap in the design; it's the design. The bet is that this situation is rare in practice and that a human picking a ref, once, with the conflict spelled out, beats a solver picking one silently and being wrong in a way you discover three hours into a build.
 
-```
+<pre class="diagram">
               your-app
               /        \
         effectful     some-lib
@@ -99,7 +100,7 @@ One kind of conflict doesn't go away, though, and it's worth being clear that zi
           -----------------
           you choose (root override),
           shown in the resolved closure
-```
+</pre>
 
 This is also where the most interesting road-not-taken sits. You could imagine computing a forward-pin properly instead of guessing the branch tip: find the minimal commit of a package whose boot-library bounds are all satisfiable against the toolchain. That sounds like Go's MVS, and it rhymes with it, but it's a different problem. MVS searches a space where every version across the graph is negotiable. Here the toolchain ships exactly one version of each boot library, a fixed constant, so picking the smallest compatible commit is a deterministic computation rather than a search. No SAT, no negotiation, just an answer.
 
