@@ -8,6 +8,8 @@ description: >-
 
 permalink: /:slug.html
 
+favicon: /assets/images/favicon.svg
+
 remote_theme: riggraz/no-style-please
 
 theme_config:
