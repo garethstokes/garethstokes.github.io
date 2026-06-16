@@ -1,4 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 220" width="420" height="220" font-family="monospace" role="img" aria-label="the wasm support envelope: pure Haskell in, system libs bounce off">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 220" width="440" height="220" font-family="monospace" role="img" aria-label="the wasm support envelope: pure Haskell in, system libs bounce off">
+  <defs>
+    <marker id="bounce" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#888"/>
+    </marker>
+    <marker id="exp" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#22d3ee"/>
+    </marker>
+  </defs>
+
   <!-- the envelope boundary -->
   <rect x="36" y="46" width="210" height="128" rx="14" fill="none" stroke="#22d3ee" stroke-width="2.5"/>
   <text x="141" y="38" fill="#22d3ee" font-size="11" text-anchor="middle">wasm32-wasi envelope</text>
@@ -13,19 +22,18 @@
     <text x="82" y="124">in-package C sources</text>
   </g>
 
-  <!-- dashed outward arrows: the boundary expands -->
-  <g stroke="#22d3ee" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.6">
-    <line x1="36" y1="150" x2="20" y2="158"/>
-    <line x1="141" y1="174" x2="141" y2="192"/>
+  <!-- dashed outward arrows: the boundary expands over time -->
+  <g stroke="#22d3ee" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.65">
+    <line x1="40" y1="152" x2="18" y2="162" marker-end="url(#exp)"/>
+    <line x1="120" y1="174" x2="120" y2="198" marker-end="url(#exp)"/>
   </g>
-  <text x="100" y="206" fill="#666" font-size="9">envelope expands over time</text>
+  <text x="120" y="212" fill="#666" font-size="9" text-anchor="middle">envelope expands over time</text>
 
-  <!-- outside: a system lib bounces off -->
-  <g stroke="#888" stroke-width="2" fill="none">
-    <path d="M360,80 L300,104 L356,128"/>
-  </g>
-  <rect x="356" y="70" width="44" height="22" rx="2" fill="none" stroke="#888"/>
-  <text x="378" y="85" fill="#888" font-size="11" text-anchor="middle">zlib</text>
-  <text x="300" y="150" fill="#888" font-size="9" text-anchor="middle">ZINC_WASM_UNSUPPORTED</text>
-  <text x="300" y="164" fill="#666" font-size="9" text-anchor="middle">(fail-fast, typed)</text>
+  <!-- outside: a system lib hits the wall and is rejected -->
+  <rect x="338" y="54" width="44" height="22" rx="2" fill="none" stroke="#888"/>
+  <text x="360" y="69" fill="#888" font-size="11" text-anchor="middle">zlib</text>
+  <!-- incoming from zlib, strikes the envelope's right wall, deflects away -->
+  <path d="M338,78 L250,108 L330,150" fill="none" stroke="#888" stroke-width="2" marker-end="url(#bounce)"/>
+  <text x="340" y="176" fill="#888" font-size="9" text-anchor="middle">ZINC_WASM_UNSUPPORTED</text>
+  <text x="340" y="189" fill="#666" font-size="9" text-anchor="middle">(fail-fast, typed)</text>
 </svg>
