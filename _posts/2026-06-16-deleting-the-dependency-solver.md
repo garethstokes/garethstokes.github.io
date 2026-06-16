@@ -7,7 +7,7 @@ author: Gareth Stokes
 
 Every package manager has a component its users dread. In Haskell it's the version solver: the part of cabal-install that takes the version ranges scattered across your dependency graph and searches for one assignment that satisfies all of them. When it works you never think about it. When it fails you get a page of text about incompatible bounds on a package three levels down that you've never heard of, and your afternoon is gone.
 
-zinc is a Haskell build tool that doesn't have one. It started as a question I wanted a real answer to: how far can you get without a solver at all? Not "a faster solver" or "a friendlier solver" but none, and see where that runs out.
+[zinc](https://github.com/garethstokes/zinc) is a Haskell build tool that doesn't have one. It started as a question I wanted a real answer to: how far can you get without a solver at all? Not "a faster solver" or "a friendlier solver" but none, and see where that runs out.
 
 So the whole design rests on a single decision. zinc is git-native and Nix-assisted, and it drops the solver entirely. Dependencies are git repositories pinned by content hash. Each package name resolves to exactly one ref across the workspace. Nothing searches a constraint space, so there are no solver errors. The price is that a real conflict between two packages doesn't get resolved for you. You resolve it once, by hand, and the choice gets frozen into the lockfile. I think that trade is worth making, and most of this post is me checking how far it actually goes before it breaks.
 

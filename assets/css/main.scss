@@ -1,54 +1,36 @@
 ---
 ---
-// CSS Style Guide: http://codeguide.co/#css
 
+@import "no-style-please";
 
+// --- custom dark theme: black background, aqua-blue accent ---
+// The theme's built-in "dark" mode is a global `filter: invert(1)`, which would
+// turn an aqua accent into red. So appearance is left on "light" (no invert) and
+// the dark palette is set directly here, giving exact control over the accent.
 
-$scheme    : '{{ site.scheme | default: Muse }}';
-$variables : base $scheme custom;
-$mixins    : base $scheme custom;
+$bg: #000000;
+$fg: #e6e6e6;
+$accent: #22d3ee; // aqua blue
 
+html, body { background: $bg; }
+body { color: $fg; }
 
-{% include _helper/config_map.html %}
-$jekyll-config-map : {{ config_map }};
+a, a:visited { color: $accent; }
+a:hover { color: lighten($accent, 12%); }
 
-@function jekyll-config($key) {
-  @return map-get($jekyll-config-map, $key);
+// anchored-heading highlight (theme default is yellow)
+*:target { background: rgba(34, 211, 238, 0.22); }
+
+// inline code: theme sets white-on-black, which vanishes on a black page
+code { color: $accent; background: #141414; }
+
+// fenced code blocks: readable light text on near-black, with a faint border
+div.highlighter-rouge code {
+  color: $fg;
+  background: #0d0d0d;
+  border: thin solid #2a2a2a;
 }
 
-// Variables Layer
-// --------------------------------------------------
-@import "_variables/base";
-@import "_variables/{{ site.scheme | default: Muse }}";
-@import "_variables/custom";
-
-// Mixins Layer
-// --------------------------------------------------
-@import "_mixins/base";
-@import "_mixins/{{ site.scheme | default: Muse }}";
-@import "_mixins/custom";
-
-
-
-// Common Layer
-// --------------------------------------------------
-
-// Scaffolding
-@import "_common/scaffolding/scaffolding";
-
-// Layout
-@import "_common/outline/outline";
-
-// Components
-@import "_common/components/components";
-
-
-// Schemes Layer
-// --------------------------------------------------
-@import "_schemes/{{ site.scheme | default: Muse }}/index";
-
-
-
-// Custom Layer
-// --------------------------------------------------
-@import "_custom/custom";
+// borders are black in the theme — lift them so they show on black
+table, th, td { border-color: #3a3a3a; }
+blockquote { border-color: #3a3a3a; }

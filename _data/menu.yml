@@ -1,0 +1,10 @@
+entries:
+  - title: posts
+    post_list:
+      limit: 10
+  - title: about
+    url: /about.html
+  - title: github
+    url: https://github.com/garethstokes
+  - title: rss
+    url: /feed.xml
