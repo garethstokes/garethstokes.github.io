@@ -9,7 +9,7 @@ Every package manager has a component its users dread. In Haskell it's the versi
 
 [zinc](https://github.com/garethstokes/zinc) is a Haskell build tool that doesn't have one. It started as a question I wanted a real answer to: how far can you get without a solver at all? Not "a faster solver" or "a friendlier solver" but none, and see where that runs out.
 
-So the whole design rests on a single decision. zinc is git-native and Nix-assisted, and it drops the solver entirely. Dependencies are git repositories pinned by content hash. Each package name resolves to exactly one ref across the workspace. Nothing searches a constraint space, so there are no solver errors. The price is that a real conflict between two packages doesn't get resolved for you. You resolve it once, by hand, and the choice gets frozen into the lockfile. I think that trade is worth making, and most of this post is me checking how far it actually goes before it breaks.
+So the whole design rests on a single decision. zinc is git-native and Nix-assisted, and it drops the solver entirely. Dependencies are content-addressed sources: usually a git repo at a pinned rev, with explicit vendored Hackage tarballs for the few packages that have no git repo. Each package name resolves to exactly one ref across the workspace. Nothing searches a constraint space, so there are no solver errors. The price is that a real conflict between two packages doesn't get resolved for you. You resolve it once, by hand, and the choice gets frozen into the lockfile. I think that trade is worth making, and most of this post is me checking how far it actually goes before it breaks.
 
 <figure>
   <img src="/assets/images/hero-solver-vs-chain.svg" alt="On the left, a tangle of dependency nodes with version ranges and a question mark, labelled cabal: search for an assignment. On the right, a clean vertical chain of name-to-commit-hash boxes, labelled zinc: one pinned commit each.">
@@ -44,7 +44,7 @@ ErrorT not in scope
 
 The error is in `monad-control`, a package you didn't ask for, pulled in by something else you didn't ask for. It names a type that left the ecosystem years ago. There's no version number in it and nothing obvious to grep for.
 
-The cause is a familiar Haskell papercut. `monad-control`'s newest release tag declares `build-depends: transformers < 0.6`. The toolchain ships `transformers 0.6.1.0`. `ErrorT` was removed in `transformers 0.6`. So the package's latest tagged release can't compile against the compiler it's being built with, because the maintainers fixed the bound on their main branch and never cut a new release. cabal's solver gets around this by finding some other set of versions that works. zinc has no solver to get around with, so it has to notice the problem directly.
+The cause is a familiar Haskell papercut. `monad-control`'s newest git tag, `v1.0.3`, declares `build-depends: transformers < 0.6`. The toolchain ships `transformers 0.6.1.0`, and `ErrorT` was removed in `transformers 0.6`, so that tagged release can't compile against the compiler it's being built with. The bound was relaxed on later commits (HEAD is `1.0.4`, with `transformers < 0.7`), but no newer git tag carries the fix, so a resolution that follows tags lands on the stale one. cabal's solver gets around this by finding some other set of versions that works. zinc has no solver to get around with, so it has to notice the problem directly.
 
 This is the part the bet depends on. zinc reads that `< 0.6` bound, but it reads it only to explain the failure, never to choose anything. A small detector parses the dependency's `.cabal` and checks each boot-library bound against the version the toolchain actually ships. The code that does this carries a comment reminding the next person that the bound is for diagnostics only and must never feed back into resolution. zinc still pins a commit, not a version range. Let a range start influencing what gets selected and you've rebuilt the solver, so it isn't allowed to.
 
@@ -74,7 +74,7 @@ Two details deserve more honesty than my first pass gave them.
 
 The forward-pin suggestion is a hint, not a computed answer. Right now zinc clones the dependency's default branch, checks whether the tip relaxes the bound, and offers that commit if it does. That's coarse. The tip might be hundreds of commits past the stale tag with a pile of unrelated changes, and it only checks the bound rather than trying a compile. Finding the smallest commit that actually fixes the bound, by bisecting or by walking the `.cabal` file's own history, would be better. It's filed as future work, not something I'm claiming now. Even the coarse version is the rule working as designed, though: zinc proposes a commit, you decide, your choice gets frozen as explicit state. The tool never resolves anything silently.
 
-And this wasn't a one-off. Pin `monad-control` forward and the build moves exactly one step before hitting the next stale tag, `strict-mutable-base`, whose latest release is older than what `effectful` needs and is missing a function added later. Same shape, same fix. The second independent case is what convinced me it deserved a real diagnostic instead of a workaround.
+And this wasn't a one-off. Pin `monad-control` forward and the build moves exactly one step before hitting the next stale tag, `strict-mutable-base`, whose latest git tag (`1.0.0.0`) is below what `effectful` needs (`>= 1.1.0.0`) and is missing a function added later. Same shape, same fix. The second independent case is what convinced me it deserved a real diagnostic instead of a workaround.
 
 So the bet holds, with a caveat I'd rather state than gloss over. Deleting the solver doesn't make conflicts go away; it means you can't hide them. A solver would have searched quietly past this one. zinc can't, so the most it can do is turn the worst error in the build into the most readable one, give you somewhere to start, and let you make the call.
 
@@ -84,14 +84,14 @@ There's a question lurking under the last story. If a stale version bound is wha
 
 Most of that particular trouble is on loan from the old ecosystem, and it gets paid back as the ecosystem changes. The boot-conflict diagnostic exists only because upstream packages publish cabal version bounds. A zinc-native package declares its dependency as `depends = ["transformers"]` with no bound at all and gets whatever the toolchain ships, because boot libraries come with the compiler and are never fetched. In a world where packages described themselves to zinc instead of to cabal, the `transformers < 0.6` problem couldn't occur, because there'd be no bound to go stale. The diagnostic is a bridge to the packages that exist today, and it fires less the more of them describe themselves natively. I'm fine building something that becomes less necessary over time.
 
-One kind of conflict doesn't go away, though, and it's worth being clear that zinc has no plan to make it disappear. If package A wants `bytestring` at one ref and package C wants it at another, the one-ref-per-name rule forces a single choice. With no solver, you make that choice. That's not a gap in the design; it's the design. The bet is that this situation is rare in practice and that a human picking a ref, once, with the conflict spelled out, beats a solver picking one silently and being wrong in a way you discover three hours into a build.
+One kind of conflict doesn't go away, though, and it's worth being clear that zinc has no plan to make it disappear. If package A wants `vector` at one ref and package C wants it at another, the one-ref-per-name rule forces a single choice. With no solver, you make that choice. That's not a gap in the design; it's the design. The bet is that this situation is rare in practice and that a human picking a ref, once, with the conflict spelled out, beats a solver picking one silently and being wrong in a way you discover three hours into a build.
 
 ```
               your-app
               /        \
         effectful     some-lib
             |             |
-        wants text     wants text
+       wants vector    wants vector
           @ ref A        @ ref B
             \             /
              \           /
@@ -131,7 +131,7 @@ Now the part you actually need to plan around. The toolchain plumbing is solved,
 
 ## What actually carried the work
 
-Two things land together at the end. The first is that `zinc build` builds zinc. Self-hosting was the definition of done from the start, because it's the one test that exercises the resolver, the `.cabal` reader, the Nix environment, the build driver and the cache against real packages at once. The second is that everything zinc does is built to be driven by a program as easily as by a person: every command emits a JSON envelope, every failure carries a stable `ZINC_*` code and a category exit code, and there are no interactive prompts to hang on. The tool an agent helped build is a tool an agent can run, and that wasn't a slogan, it was the constraint that made the agent useful in the first place.
+Two things land together at the end. The first is that `zinc build` builds zinc. Self-hosting was the definition of done from the start, because it's the one test that exercises the resolver, the `.cabal` reader, the Nix environment, the build driver and the cache against real packages at once. The second is that everything zinc does is built to be driven by a program as easily as by a person: every command can emit a machine-readable JSON envelope with `--json`, every failure carries a stable `ZINC_*` code and a category exit code, and there are no interactive prompts to hang on. The tool an agent helped build is a tool an agent can run, and that wasn't a slogan, it was the constraint that made the agent useful in the first place.
 
 <figure>
   <img src="/assets/images/ouroboros-loop.svg" alt="A circular arrow looping back on itself with the word zinc at its center.">
@@ -140,4 +140,4 @@ Two things land together at the end. The first is that `zinc build` builds zinc.
 
 That's the part I'd point at for anyone building real software this way. The leverage wasn't in generating code quickly. It was in two older disciplines that an agent happens to reward more than a human collaborator does. Writing the design down before the code, so the no-solver rule had somewhere to live and something to be checked against. And designing for inspection, so every decision the tool makes lands as explicit, frozen state you can read back later. The slogan I kept coming back to was explicit state, not explicit effort, and it turned out to describe the working relationship as much as the lockfile.
 
-The bet went further than I expected. From the first commit to a self-hosting build, wasm cross-compilation and zero-downtime deploys took about two weeks. The solver is still gone, and I haven't yet hit the place where I wish it back.
+The bet went further than I expected. Self-hosting landed within a couple of days of the first commit, and wasm cross-compilation and zero-downtime deploys inside the first week. The solver is still gone, and I haven't yet hit the place where I wish it back.
