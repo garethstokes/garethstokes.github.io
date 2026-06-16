@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 220" width="420" height="220" font-family="monospace" role="img" aria-label="the wasm support envelope: pure Haskell in, system libs bounce off">
+  <!-- the envelope boundary -->
+  <rect x="36" y="46" width="210" height="128" rx="14" fill="none" stroke="#22d3ee" stroke-width="2.5"/>
+  <text x="141" y="38" fill="#22d3ee" font-size="11" text-anchor="middle">wasm32-wasi envelope</text>
+
+  <!-- inside: supported -->
+  <g stroke="#22d3ee" stroke-width="2" fill="none">
+    <polyline points="54,86 60,92 72,78"/>
+    <polyline points="54,120 60,126 72,112"/>
+  </g>
+  <g fill="#e6e6e6" font-size="12">
+    <text x="82" y="90">pure Haskell</text>
+    <text x="82" y="124">in-package C sources</text>
+  </g>
+
+  <!-- dashed outward arrows: the boundary expands -->
+  <g stroke="#22d3ee" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.6">
+    <line x1="36" y1="150" x2="20" y2="158"/>
+    <line x1="141" y1="174" x2="141" y2="192"/>
+  </g>
+  <text x="100" y="206" fill="#666" font-size="9">envelope expands over time</text>
+
+  <!-- outside: a system lib bounces off -->
+  <g stroke="#888" stroke-width="2" fill="none">
+    <path d="M360,80 L300,104 L356,128"/>
+  </g>
+  <rect x="356" y="70" width="44" height="22" rx="2" fill="none" stroke="#888"/>
+  <text x="378" y="85" fill="#888" font-size="11" text-anchor="middle">zlib</text>
+  <text x="300" y="150" fill="#888" font-size="9" text-anchor="middle">ZINC_WASM_UNSUPPORTED</text>
+  <text x="300" y="164" fill="#666" font-size="9" text-anchor="middle">(fail-fast, typed)</text>
+</svg>

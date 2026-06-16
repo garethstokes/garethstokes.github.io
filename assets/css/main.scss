@@ -34,3 +34,7 @@ div.highlighter-rouge code {
 // borders are black in the theme — lift them so they show on black
 table, th, td { border-color: #3a3a3a; }
 blockquote { border-color: #3a3a3a; }
+
+// figures: theme already centers images; style the caption to match
+figure { margin: 2.5rem 0; }
+figcaption { text-align: center; color: #888; font-size: 0.8rem; margin-top: 0.6rem; }
