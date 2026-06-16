@@ -3,6 +3,8 @@ layout: page
 title: About
 ---
 
+<img src="/assets/images/avatar.png" alt="Gareth Stokes" width="160" style="border-radius: 50%;" />
+
 I'm Gareth Stokes. I build developer tools and write about the decisions behind
 them.
 
