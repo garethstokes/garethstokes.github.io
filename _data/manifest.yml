@@ -4,24 +4,24 @@
 # Hero's-journey beat-names are intentionally NOT used in any visible label;
 # the journey is a structural device only.
 title: "the math under manifest"
-hub: /manifest/
-prelude: /manifest/prelude/
+hub: /the-math-under-manifest/
+prelude: /the-math-under-manifest/prelude/
 parts:
   - short: "three things at once"
     title: "a record that's three things at once"
-    url: /manifest/the-call/
+    url: /the-math-under-manifest/the-call/
   - short: "the markers vanish"
     title: "making the markers disappear"
-    url: /manifest/the-threshold/
+    url: /the-math-under-manifest/the-threshold/
   - short: "reading a row"
     title: "reading a row without a ceiling"
-    url: /manifest/the-trials/
+    url: /the-math-under-manifest/the-trials/
   - short: "the unseen edit"
     title: "the session that can't see your edit"
-    url: /manifest/the-ordeal/
+    url: /the-math-under-manifest/the-ordeal/
   - short: "a shadow in the types"
     title: "a shadow in the world of types"
-    url: /manifest/the-summit/
+    url: /the-math-under-manifest/the-summit/
   - short: "the working, complete"
     title: "the working, complete"
-    url: /manifest/the-return/
+    url: /the-math-under-manifest/the-return/

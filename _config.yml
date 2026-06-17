@@ -8,13 +8,6 @@ description: >-
 
 permalink: /:slug.html
 
-# The manifest series parts are sub-pages, not feed posts: only the hub
-# (a normal post) appears in the home list. Parts render at their own
-# permalinks via this collection.
-collections:
-  manifest:
-    output: true
-
 favicon: /assets/images/favicon.svg
 
 remote_theme: riggraz/no-style-please

@@ -2,13 +2,13 @@
 layout: post
 title: "a prelude: reading the types"
 author: Gareth Stokes
-permalink: /manifest/prelude/
+permalink: /the-math-under-manifest/prelude/
 ---
 
 <nav class="series-nav">
-  <span class="series-nav__prev"><a href="/manifest/">← the journey</a></span>
+  <span class="series-nav__prev"><a href="/the-math-under-manifest/">← the journey</a></span>
   <span class="series-nav__mid">prelude</span>
-  <span class="series-nav__next"><a href="/manifest/the-call/">a record that's three things at once →</a></span>
+  <span class="series-nav__next"><a href="/the-math-under-manifest/the-call/">a record that's three things at once →</a></span>
 </nav>
 
 <figure>
@@ -51,7 +51,7 @@ One last shape to recognise. Symbols like `<$>` and `<*>` are ordinary functions
 That is the whole notation the series rests on. Everything from here is about the ideas it spells, starting with a single record that has to be three things at once.
 
 <nav class="series-nav">
-  <span class="series-nav__prev"><a href="/manifest/">← the journey</a></span>
+  <span class="series-nav__prev"><a href="/the-math-under-manifest/">← the journey</a></span>
   <span class="series-nav__mid">prelude</span>
-  <span class="series-nav__next"><a href="/manifest/the-call/">a record that's three things at once →</a></span>
+  <span class="series-nav__next"><a href="/the-math-under-manifest/the-call/">a record that's three things at once →</a></span>
 </nav>

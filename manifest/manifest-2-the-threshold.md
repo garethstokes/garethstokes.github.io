@@ -2,7 +2,7 @@
 layout: post
 title: "making the markers disappear"
 author: Gareth Stokes
-permalink: /manifest/the-threshold/
+permalink: /the-math-under-manifest/the-threshold/
 series: manifest
 part: 2
 of: 6

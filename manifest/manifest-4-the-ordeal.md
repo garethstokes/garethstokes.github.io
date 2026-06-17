@@ -2,7 +2,7 @@
 layout: post
 title: "the session that can't see your edit"
 author: Gareth Stokes
-permalink: /manifest/the-ordeal/
+permalink: /the-math-under-manifest/the-ordeal/
 series: manifest
 part: 4
 of: 6

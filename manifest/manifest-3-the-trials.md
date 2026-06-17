@@ -2,7 +2,7 @@
 layout: post
 title: "reading a row without a ceiling"
 author: Gareth Stokes
-permalink: /manifest/the-trials/
+permalink: /the-math-under-manifest/the-trials/
 series: manifest
 part: 3
 of: 6

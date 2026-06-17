@@ -2,7 +2,7 @@
 layout: post
 title: "a record that's three things at once"
 author: Gareth Stokes
-permalink: /manifest/the-call/
+permalink: /the-math-under-manifest/the-call/
 series: manifest
 part: 1
 of: 6

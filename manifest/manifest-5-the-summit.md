@@ -2,7 +2,7 @@
 layout: post
 title: "a shadow in the world of types"
 author: Gareth Stokes
-permalink: /manifest/the-summit/
+permalink: /the-math-under-manifest/the-summit/
 series: manifest
 part: 5
 of: 6

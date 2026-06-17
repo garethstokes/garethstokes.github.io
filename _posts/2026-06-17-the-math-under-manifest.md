@@ -3,7 +3,7 @@ layout: post
 title: "the math under manifest"
 description: "The category theory behind manifest, a Haskell ORM, built up from first principles one step at a time."
 author: Gareth Stokes
-permalink: /manifest/
+permalink: /the-math-under-manifest/
 ---
 
 This is how to define a user in manifest, a database library for Haskell:
@@ -51,13 +51,13 @@ every idea that follows is a piece of mathematics standing in for a mutation you
 allowed to make. Take away the ability to reach into a value and change it, and category
 theory is what you reach for to get the same work done honestly.
 
-If Haskell itself is new to you, the [prelude](/manifest/prelude/) covers how to read the
+If Haskell itself is new to you, the [prelude](/the-math-under-manifest/prelude/) covers how to read the
 type signatures first. The path then runs from a plain record to that signature, in six
 steps:
 
-1. [a record that's three things at once](/manifest/the-call/) — one declaration that is a table, a row, and a query (functor and higher-kinded types)
-2. [making the markers disappear](/manifest/the-threshold/) — getting a clean `Int` back (the Identity functor)
-3. [reading a row without a ceiling](/manifest/the-trials/) — decode and encode from one description (applicative and profunctor)
-4. [the session that can't see your edit](/manifest/the-ordeal/) — change tracking on a value you cannot mutate (the monad and the snapshot-diff)
-5. [a shadow in the world of types](/manifest/the-summit/) — a missing relation as a compile error (type-level functions)
-6. [the working, complete](/manifest/the-return/) — the signature, now obvious (Generics ties it together)
+1. [a record that's three things at once](/the-math-under-manifest/the-call/) — one declaration that is a table, a row, and a query (functor and higher-kinded types)
+2. [making the markers disappear](/the-math-under-manifest/the-threshold/) — getting a clean `Int` back (the Identity functor)
+3. [reading a row without a ceiling](/the-math-under-manifest/the-trials/) — decode and encode from one description (applicative and profunctor)
+4. [the session that can't see your edit](/the-math-under-manifest/the-ordeal/) — change tracking on a value you cannot mutate (the monad and the snapshot-diff)
+5. [a shadow in the world of types](/the-math-under-manifest/the-summit/) — a missing relation as a compile error (type-level functions)
+6. [the working, complete](/the-math-under-manifest/the-return/) — the signature, now obvious (Generics ties it together)

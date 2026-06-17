@@ -2,7 +2,7 @@
 layout: post
 title: "the working, complete"
 author: Gareth Stokes
-permalink: /manifest/the-return/
+permalink: /the-math-under-manifest/the-return/
 series: manifest
 part: 6
 of: 6
