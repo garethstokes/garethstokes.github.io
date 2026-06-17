@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 120" width="460" height="120" font-family="monospace" role="img" aria-label="The value x goes into the function g, the result g x goes into the function f, and out comes f of g of x.">
+  <text x="34" y="62" fill="#e6e6e6" font-size="14" text-anchor="middle">x</text>
+
+  <line x1="46" y1="58" x2="84" y2="58" stroke="#888" stroke-width="1.5"/>
+  <polygon points="90,58 82,54 82,62" fill="#888"/>
+
+  <rect x="92" y="42" width="38" height="32" rx="3" fill="none" stroke="#22d3ee"/>
+  <text x="111" y="63" fill="#22d3ee" font-size="15" text-anchor="middle">g</text>
+
+  <text x="152" y="36" fill="#666" font-size="9" text-anchor="middle">g x</text>
+  <line x1="132" y1="58" x2="170" y2="58" stroke="#888" stroke-width="1.5"/>
+  <polygon points="176,58 168,54 168,62" fill="#888"/>
+
+  <rect x="178" y="42" width="38" height="32" rx="3" fill="none" stroke="#22d3ee"/>
+  <text x="197" y="63" fill="#22d3ee" font-size="15" text-anchor="middle">f</text>
+
+  <line x1="218" y1="58" x2="256" y2="58" stroke="#888" stroke-width="1.5"/>
+  <polygon points="262,58 254,54 254,62" fill="#888"/>
+
+  <text x="312" y="62" fill="#e6e6e6" font-size="14" text-anchor="middle">f (g x)</text>
+
+  <text x="230" y="98" fill="#666" font-size="10" text-anchor="middle">the maths f(g(x)), written f (g x) or (f . g) x</text>
+</svg>

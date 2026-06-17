@@ -1,0 +1,27 @@
+# Series manifest for the "showing the working" post.
+# Drives _includes/series-nav.html. Order here IS the reading order; `part`
+# frontmatter on each page is its 1-based index into `parts`.
+# Hero's-journey beat-names are intentionally NOT used in any visible label;
+# the journey is a structural device only.
+title: "the math under manifest"
+hub: /manifest/
+prelude: /manifest/prelude/
+parts:
+  - short: "three things at once"
+    title: "a record that's three things at once"
+    url: /manifest/the-call/
+  - short: "the markers vanish"
+    title: "making the markers disappear"
+    url: /manifest/the-threshold/
+  - short: "reading a row"
+    title: "reading a row without a ceiling"
+    url: /manifest/the-trials/
+  - short: "the unseen edit"
+    title: "the session that can't see your edit"
+    url: /manifest/the-ordeal/
+  - short: "a shadow in the types"
+    title: "a shadow in the world of types"
+    url: /manifest/the-summit/
+  - short: "the working, complete"
+    title: "the working, complete"
+    url: /manifest/the-return/

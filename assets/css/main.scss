@@ -39,6 +39,21 @@ blockquote { border-color: #3a3a3a; }
 figure { margin: 2.5rem 0; }
 figcaption { text-align: center; color: #888; font-size: 0.8rem; margin-top: 0.6rem; }
 
+// series nav: prev · part N of M · next, on one row, wrapping gracefully
+nav.series-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin: 2rem 0;
+  font-size: 0.8rem;
+  border-top: thin solid #2a2a2a;
+  border-bottom: thin solid #2a2a2a;
+  padding: 0.5rem 0;
+}
+nav.series-nav .series-nav__mid { color: #888; }
+nav.series-nav .series-nav__next { margin-left: auto; }
+
 // ASCII diagrams: keep alignment — never wrap, scroll horizontally if narrow
 pre.diagram {
   background: #0d0d0d;

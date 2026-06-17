@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 220" width="480" height="220" font-family="monospace" role="img" aria-label="A single box labelled UserT f passes through a deriving Generic step and fans out to four things GHC produces from it: the schema, the codec, the CRUD surface, and the relationship metadata. One declaration produces everything.">
+  <!-- the single source declaration -->
+  <rect x="14" y="91" width="104" height="36" rx="3" fill="none" stroke="#22d3ee"/>
+  <text x="66" y="114" fill="#22d3ee" font-size="14" text-anchor="middle">UserT f</text>
+  <text x="66" y="141" fill="#666" font-size="9" text-anchor="middle">one declaration</text>
+
+  <!-- deriving Generic step -->
+  <line x1="118" y1="109" x2="158" y2="109" stroke="#22d3ee" stroke-width="1.5"/>
+  <polygon points="164,109 156,105 156,113" fill="#22d3ee"/>
+  <rect x="164" y="91" width="92" height="36" rx="3" fill="none" stroke="#22d3ee" stroke-dasharray="3 3"/>
+  <text x="210" y="108" fill="#22d3ee" font-size="11" text-anchor="middle">deriving</text>
+  <text x="210" y="122" fill="#22d3ee" font-size="11" text-anchor="middle">Generic</text>
+  <text x="210" y="141" fill="#666" font-size="9" text-anchor="middle">Rep: the shape</text>
+
+  <!-- fan from the derived view to four things -->
+  <g fill="none" stroke="#22d3ee" stroke-width="1.5">
+    <path d="M256,103 C300,103 300,29 338,29"/>
+    <path d="M256,107 C300,107 300,79 338,79"/>
+    <path d="M256,111 C300,111 300,129 338,129"/>
+    <path d="M256,115 C300,115 300,179 338,179"/>
+  </g>
+  <g fill="#22d3ee">
+    <polygon points="344,29 336,25 336,33"/>
+    <polygon points="344,79 336,75 336,83"/>
+    <polygon points="344,129 336,125 336,133"/>
+    <polygon points="344,179 336,175 336,183"/>
+  </g>
+
+  <!-- the four derived artifacts -->
+  <g fill="none" stroke="#888">
+    <rect x="344" y="15" width="120" height="28" rx="3"/>
+    <rect x="344" y="65" width="120" height="28" rx="3"/>
+    <rect x="344" y="115" width="120" height="28" rx="3"/>
+    <rect x="344" y="165" width="120" height="28" rx="3"/>
+  </g>
+  <g fill="#e6e6e6" font-size="12" text-anchor="middle">
+    <text x="404" y="33">schema</text>
+    <text x="404" y="83">codec</text>
+    <text x="404" y="133">CRUD surface</text>
+    <text x="404" y="183">relationships</text>
+  </g>
+</svg>

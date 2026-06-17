@@ -1,0 +1,33 @@
+{%- comment -%}
+  Series prev/next nav, driven by _data/manifest.yml.
+  Requires page frontmatter: series, part (1-based), of.
+  Place at the top and bottom of each part. Falls back to the hub at the ends.
+{%- endcomment -%}
+{%- assign s = site.data[page.series] -%}
+{%- assign idx = page.part | minus: 1 -%}
+{%- assign prev_idx = idx | minus: 1 -%}
+{%- assign next_idx = idx | plus: 1 -%}
+{%- assign last = s.parts | size | minus: 1 -%}
+<nav class="series-nav">
+  <span class="series-nav__prev">
+    {%- if idx > 0 -%}
+      {%- assign p = s.parts[prev_idx] -%}
+      <a href="{{ p.url | relative_url }}">← {{ p.short }}</a>
+    {%- elsif s.prelude -%}
+      <a href="{{ s.prelude | relative_url }}">← prelude</a>
+    {%- else -%}
+      <a href="{{ s.hub | relative_url }}">← the journey</a>
+    {%- endif -%}
+  </span>
+  <span class="series-nav__mid">
+    <a href="{{ s.hub | relative_url }}">part {{ page.part }} of {{ page.of }}</a>
+  </span>
+  <span class="series-nav__next">
+    {%- if idx < last -%}
+      {%- assign n = s.parts[next_idx] -%}
+      <a href="{{ n.url | relative_url }}">{{ n.short }} →</a>
+    {%- else -%}
+      <a href="{{ s.hub | relative_url }}">back to the journey →</a>
+    {%- endif -%}
+  </span>
+</nav>

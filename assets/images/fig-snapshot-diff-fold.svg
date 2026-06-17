@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 220" width="480" height="220" font-family="monospace" role="img" aria-label="A snapshot row reads 42, Al, al@x; the saved row reads 42, Bob, al@x. The id and email columns are marked same, the name column changed. An arrow from the changed column leads to UPDATE users SET name = $1 WHERE id = 42.">
+  <!-- column headers -->
+  <g fill="#666" font-size="9" text-anchor="middle">
+    <text x="130" y="18">id</text>
+    <text x="250" y="18">name</text>
+    <text x="370" y="18">email</text>
+  </g>
+
+  <!-- snapshot row -->
+  <text x="66" y="43" fill="#888" font-size="10" text-anchor="end">snapshot</text>
+  <g fill="none" stroke="#888">
+    <rect x="85" y="26" width="90" height="26" rx="3"/>
+    <rect x="205" y="26" width="90" height="26" rx="3"/>
+    <rect x="325" y="26" width="90" height="26" rx="3"/>
+  </g>
+  <g fill="#e6e6e6" font-size="12" text-anchor="middle">
+    <text x="130" y="43">42</text>
+    <text x="250" y="43">Al</text>
+    <text x="370" y="43">al@x</text>
+  </g>
+
+  <!-- saved row (name changed) -->
+  <text x="66" y="83" fill="#888" font-size="10" text-anchor="end">saved</text>
+  <g fill="none" stroke="#888">
+    <rect x="85" y="66" width="90" height="26" rx="3"/>
+    <rect x="325" y="66" width="90" height="26" rx="3"/>
+  </g>
+  <rect x="205" y="66" width="90" height="26" rx="3" fill="none" stroke="#22d3ee"/>
+  <g font-size="12" text-anchor="middle">
+    <text x="130" y="83" fill="#e6e6e6">42</text>
+    <text x="250" y="83" fill="#22d3ee">Bob</text>
+    <text x="370" y="83" fill="#e6e6e6">al@x</text>
+  </g>
+
+  <!-- per-column verdict -->
+  <g font-size="9" text-anchor="middle">
+    <text x="130" y="106" fill="#666">same</text>
+    <text x="250" y="106" fill="#22d3ee">changed</text>
+    <text x="370" y="106" fill="#666">same</text>
+  </g>
+
+  <!-- fold down to the single changed column -->
+  <line x1="250" y1="114" x2="250" y2="150" stroke="#22d3ee" stroke-width="1.5"/>
+  <polygon points="250,156 246,148 254,148" fill="#22d3ee"/>
+
+  <!-- result -->
+  <rect x="80" y="164" width="320" height="30" rx="3" fill="none" stroke="#22d3ee"/>
+  <text x="240" y="183" fill="#e6e6e6" font-size="11" text-anchor="middle">UPDATE users SET name = $1 WHERE id = 42</text>
+</svg>

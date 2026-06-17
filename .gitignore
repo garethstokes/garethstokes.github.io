@@ -1,0 +1,11 @@
+# Jekyll build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# bundler — gems vendored into the repo by the nix devshell
+vendor/
+.bundle/
+
+# direnv
+.direnv/

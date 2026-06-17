@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 294" width="420" height="294" font-family="monospace" role="img" aria-label="A stack of six equal-width rungs. The base, in accent, is one declaration UserT f. Above it, each derived from the one below: the functor parameter, the bare value, the codec, the tracked value, and the typed relations at the top. Arrows point upward from each rung to the next.">
+  <!-- rungs -->
+  <g fill="none">
+    <rect x="90" y="12"  width="240" height="30" rx="3" stroke="#888"/>
+    <rect x="90" y="60"  width="240" height="30" rx="3" stroke="#888"/>
+    <rect x="90" y="108" width="240" height="30" rx="3" stroke="#888"/>
+    <rect x="90" y="156" width="240" height="30" rx="3" stroke="#888"/>
+    <rect x="90" y="204" width="240" height="30" rx="3" stroke="#888"/>
+    <rect x="90" y="252" width="240" height="30" rx="3" stroke="#22d3ee"/>
+  </g>
+  <g font-size="12" text-anchor="middle" fill="#e6e6e6">
+    <text x="210" y="32">the typed relations</text>
+    <text x="210" y="80">the tracked value</text>
+    <text x="210" y="128">the codec</text>
+    <text x="210" y="176">the bare value</text>
+    <text x="210" y="224">the functor parameter</text>
+  </g>
+  <text x="210" y="272" font-size="13" text-anchor="middle" fill="#22d3ee">one declaration (UserT f)</text>
+
+  <!-- upward arrows between rungs -->
+  <g stroke="#22d3ee" stroke-width="1.5">
+    <line x1="210" y1="251" x2="210" y2="243"/>
+    <line x1="210" y1="203" x2="210" y2="195"/>
+    <line x1="210" y1="155" x2="210" y2="147"/>
+    <line x1="210" y1="107" x2="210" y2="99"/>
+    <line x1="210" y1="59"  x2="210" y2="51"/>
+  </g>
+  <g fill="#22d3ee">
+    <polygon points="210,236 205,244 215,244"/>
+    <polygon points="210,188 205,196 215,196"/>
+    <polygon points="210,140 205,148 215,148"/>
+    <polygon points="210,92  205,100 215,100"/>
+    <polygon points="210,44  205,52  215,52"/>
+  </g>
+</svg>
